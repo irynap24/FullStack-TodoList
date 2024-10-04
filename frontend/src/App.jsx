@@ -51,6 +51,30 @@ function App() {
     setTodos(newTodos);
   }
 
+  async function handleComplete(id) {
+    let updatedTodo;
+    // use map to make a copy of todos and change one todo item
+    const updatedTodos = todos.map((todo) => {
+      // if the todo item we want to change using the id
+      if (todo._id === id) {
+        // make the change, but also assign it to a variable we can access outside of map
+        updatedTodo = { ...todo, completed: !todo.completed };
+        return updatedTodo;
+      } else {
+        // keep todo the same if it doesnt match the id were updating
+        return todo;
+      }
+    });
+    await fetch(`${BaseUrl}/todos/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedTodo),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setTodos(updatedTodos);
+  }
+
   return (
     <>
       <ul>

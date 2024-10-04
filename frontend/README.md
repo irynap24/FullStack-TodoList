@@ -38,3 +38,26 @@ add connection string ATLAS URI
 
 testing API localhost:8080/todos for get, post
 /todos/id
+
+deployment
+
+netlify - frontend
+render - both
+
+Render
+create backend first
+Set Root Directory - backend (folder)
+build command: npm install
+start command: node server
+
+Environment Variables
+KEY - MONGO_URL
+Value - connection string
+
+Front end
+root directory to front end - frontend(folder)
+build command: npm run build
+
+Env variables
+
+VITE_BASE_URL_PROD = production version deployed backend
